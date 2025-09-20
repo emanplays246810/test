@@ -1,0 +1,396 @@
+/* ===== KEYFRAME ANIMATIONS ===== */
+
+/* Spinning animation for loading */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bounce animation for logo */
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Float animation for welcome icon */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Typing animation for dots */
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for status indicator */
+@keyframes pulse-status {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+.status-indicator.offline {
+  animation: pulse-status-offline 2s infinite;
+}
+
+@keyframes pulse-status-offline {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(244, 67, 54, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+  }
+}
+
+/* Fade in animation for messages */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from right animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from left animation */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Glow animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 30px rgba(102, 126, 234, 0.6);
+  }
+}
+
+/* Typewriter animation */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Blink animation for cursor */
+@keyframes blink {
+  0%, 50% { border-color: transparent; }
+  51%, 100% { border-color: var(--text-primary); }
+}
+
+/* ===== ANIMATION CLASSES ===== */
+
+/* Message animations */
+.message {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.message-user {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.message-bot {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+/* Button hover animations */
+.send-button,
+.example-btn,
+.primary-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.send-button:active {
+  transform: scale(0.98);
+}
+
+/* Icon button animations */
+.icon-btn,
+.input-icon-btn {
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover,
+.input-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.icon-btn:active,
+.input-icon-btn:active {
+  transform: translateY(0);
+}
+
+/* Modal animations */
+.modal {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Loading animations */
+.loading-screen {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Feature item hover animation */
+.feature-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Example button animations */
+.example-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.example-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.example-btn:hover::before {
+  left: 100%;
+}
+
+/* Input focus animations */
+.chat-input {
+  transition: all 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Typing indicator animation */
+.typing-indicator.show {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+/* Error shake animation */
+.message-error {
+  animation: shake 0.5s ease-in-out, fadeInUp 0.4s ease-out;
+}
+
+/* Success animation */
+.message-success {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* Theme transition */
+[data-theme="dark"] * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Stagger animation for feature items */
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+.feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+.feature-item {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Welcome content animation */
+.welcome-content > * {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.welcome-content h2 { animation-delay: 0.1s; }
+.welcome-content p { animation-delay: 0.2s; }
+.feature-grid { animation-delay: 0.3s; }
+.quick-start { animation-delay: 0.4s; }
+
+/* Scroll animation */
+.chat-messages {
+  scroll-behavior: smooth;
+}
+
+/* Loading spinner animation */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Button click feedback */
+@keyframes buttonClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.send-button:active,
+.primary-btn:active,
+.example-btn:active {
+  animation: buttonClick 0.1s ease-out;
+}
+
+/* Notification slide animation */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notification {
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+input,
+textarea,
+.feature-item,
+.message {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .spinner {
+    animation: none;
+    border: 4px solid var(--text-muted);
+    border-top: 4px solid var(--primary-color);
+  }
+}
+
+/* Focus animations */
+.chat-input:focus {
+  transform: translateY(-1px);
+}
+
+/* Hover glow effect for send button */
+.send-button:hover {
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Character counter animation when approaching limit */
+.char-counter.warning {
+  color: var(--warning-color);
+  animation: pulse 1s infinite;
+}
+
+.char-counter.danger {
+  color: var(--error-color);
+  animation: shake 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Chatbot powered by DeepAI - Create stories, answer questions, and have conversations">
+    <meta name="keywords" content="AI, chatbot, DeepAI, stories, conversation, artificial intelligence">
+    <meta name="author" content="AI Chatbot Project">
+    
+    <title>AI Chatbot - DeepAI Assistant</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="assets/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Preconnect to API -->
+    <link rel="preconnect" href="https://api.deepai.org">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading AI Assistant...</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <main class="app-container">
+        <!-- Header with Settings -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">🤖</div>
+                    <div class="app-title">
+                        <h1>AI Assistant</h1>
+                        <span class="powered-by">Powered by DeepAI</span>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <button id="settingsBtn" class="icon-btn" title="Settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </button>
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div class="status-indicator" id="statusIndicator" title="API Status"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <section class="chat-container">
+            <!-- Welcome Section -->
+            <div id="welcomeSection" class="welcome-section">
+                <div class="welcome-content">
+                    <div class="welcome-icon">🤖</div>
+                    <h2>Welcome to AI Assistant</h2>
+                    <p>I'm your intelligent companion powered by DeepAI. I can help you with:</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span>Creative Writing</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">❓</span>
+                            <span>Q&A Sessions</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💬</span>
+                            <span>Conversations</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✨</span>
+                            <span>Text Generation</span>
+                        </div>
+                    </div>
+                    <div class="quick-start">
+                        <p>Try these examples:</p>
+                        <div class="example-buttons">
+                            <button class="example-btn" data-text="Write a story about a magical forest">📖 Write a Story</button>
+                            <button class="example-btn" data-text="What is artificial intelligence?">🤔 Ask a Question</button>
+                            <button class="example-btn" data-text="Hello, how are you today?">👋 Say Hello</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be inserted here -->
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-content">
+                    <div class="typing-avatar">🤖</div>
+                    <div class="typing-bubble">
+                        <div class="typing-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <footer class="input-section">
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <button id="attachBtn" class="input-icon-btn" title="Attach File">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                        </svg>
+                    </button>
+                    <textarea 
+                        id="chatInput" 
+                        class="chat-input" 
+                        placeholder="Type your message here... (Shift+Enter for new line)"
+                        maxlength="2000"
+                        rows="1"
+                    ></textarea>
+                    <button id="sendButton" class="send-button" title="Send Message">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-actions">
+                    <button id="clearChatBtn" class="action-btn" title="Clear Chat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3,6 5,6 21,6"></polyline>
+                            <path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path>
+                        </svg>
+                        Clear Chat
+                    </button>
+                    <div class="char-counter">
+                        <span id="charCount">0</span>/2000
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button id="closeSettingsBtn" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="apiKeyInput">DeepAI API Key:</label>
+                    <div class="input-group">
+                        <input type="password" id="apiKeyInput" placeholder="Enter your DeepAI API key">
+                        <button id="toggleApiKey" class="toggle-btn">Show</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label for="maxLengthSlider">Response Length:</label>
+                    <input type="range" id="maxLengthSlider" min="100" max="1000" value="500" step="50">
+                    <span id="maxLengthValue">500 characters</span>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="enableSoundEffects">
+                        Enable Sound Effects
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="enableAnimations" checked>
+                        Enable Animations
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettingsBtn" class="primary-btn">Save Settings</button>
+                <button id="resetSettingsBtn" class="secondary-btn">Reset to Default</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
